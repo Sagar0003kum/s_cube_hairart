@@ -17,30 +17,57 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  // ✅ ONLY CHANGE IS HERE
+  // ✅ SAFE display name (no logic change)
   const displayName = profile?.firstName || "User";
 
   return (
     <nav className="bg-black text-white px-6 py-4 border-b border-gray-800">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-bold">S_cube_HairArt</h1>
+        
+        {/* LOGO WITH 3D GLOWING CUBE */}
+        <Link href="/" className="flex items-center gap-3">
+          <div className="cube-wrapper">
+            <div className="cube">
+              <div className="cube-face front"></div>
+              <div className="cube-face back"></div>
+              <div className="cube-face right"></div>
+              <div className="cube-face left"></div>
+              <div className="cube-face top"></div>
+              <div className="cube-face bottom"></div>
+            </div>
+          </div>
 
+          <span className="text-lg font-bold tracking-wide">
+            S³ HairArt
+          </span>
+        </Link>
+
+        {/* NAV LINKS */}
         <div className="flex items-center space-x-6">
-          <Link href="/dashboard" className="block px-4 py-2 hover:bg-gray-800" onClick={() => setOpen(false)}>Dashboard</Link>
-          <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/services" className="hover:underline">Services</Link>
-          <Link href="/styles" className="hover:underline">Styles</Link>
-
-          <Link href="/cart" className="hover:underline">
-            Cart ({cart.length})
+          <Link href="/dashboard" className="hover:underline">
+            Dashboard
           </Link>
 
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>
+
+          <Link href="/services" className="hover:underline">
+            Services
+          </Link>
+
+          <Link href="/styles" className="hover:underline">
+            Styles
+          </Link>
+
+          {/* LOGGED OUT */}
           {!user && (
             <Link href="/login" className="hover:underline">
               Login
             </Link>
           )}
 
+          {/* LOGGED IN */}
           {user && (
             <div className="relative">
               <button
