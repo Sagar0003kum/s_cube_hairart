@@ -14,10 +14,10 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setLoading(true); // ✅ important
+      setLoading(true);
 
       if (!currentUser) {
-        // clear everything on logout
+        
         setUser(null);
         setProfile(null);
         setLoading(false);

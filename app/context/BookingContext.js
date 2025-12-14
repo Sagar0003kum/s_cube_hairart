@@ -13,7 +13,7 @@ export function BookingProvider({ children }) {
     notes: ""
   });
 
-  // ✅ This is the function you need
+  
   const updateBookingDetails = (field, value) => {
     setBookingDetails(prev => ({
       ...prev,
@@ -35,7 +35,7 @@ export function BookingProvider({ children }) {
     <BookingContext.Provider
       value={{
         bookingDetails,
-        updateBookingDetails, // ✅ Make sure this is included
+        updateBookingDetails, 
         clearBookingDetails
       }}
     >

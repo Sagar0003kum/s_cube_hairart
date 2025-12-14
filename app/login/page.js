@@ -24,7 +24,7 @@ export default function LoginPage() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/"); // ✅ redirect to home
+      router.push("/"); // redirect to home
     } catch (err) {
       setError("Invalid email or password.");
     }

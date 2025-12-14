@@ -45,7 +45,7 @@ export default function RegisterPage() {
         createdAt: serverTimestamp(),
       });
 
-      // ✅ HARD REDIRECT — avoids auth race conditions
+      
       window.location.href = "/login";
 
     } catch (err) {

@@ -39,7 +39,7 @@ export default function BookPage() {
   }, []);
 
   useEffect(() => {
-    // ✅ FIX: Add optional chaining for barber and date
+    // Add chaining for barber and date
     if (bookingDetails?.barber?.id && bookingDetails?.date) {
       const loadSlots = async () => {
         setLoading(true);
@@ -97,7 +97,7 @@ export default function BookPage() {
       return;
     }
 
-    // ✅ FIX: Use optional chaining and extract variables
+    // chaining and extract variables
     const service = bookingDetails?.service;
     const barber = bookingDetails?.barber;
     const date = bookingDetails?.date;
@@ -111,7 +111,7 @@ export default function BookPage() {
       return;
     }
 
-    // ✅ Additional safety checks
+    //safety checks
     if (!barber.id || !barber.name) {
       setMessage({ 
         type: "error", 
@@ -218,7 +218,7 @@ export default function BookPage() {
           </div>
         )}
 
-        {/* Step 1: Service Selection */}
+        {/* Service Selection */}
         {step === 1 && (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((service) => (
@@ -236,7 +236,7 @@ export default function BookPage() {
           </div>
         )}
 
-        {/* Step 2: Barber Selection */}
+        {/* Barber Selection */}
         {step === 2 && (
           <>
             <div className="mb-6">
@@ -292,7 +292,7 @@ export default function BookPage() {
           </>
         )}
 
-        {/* ✅ FIXED: Step 3: Time Selection */}
+        {/* Time Selection */}
         {step === 3 && (
           <>
             <div className="mb-6">
@@ -377,7 +377,7 @@ export default function BookPage() {
           </>
         )}
 
-        {/* ✅ FIXED: Step 4: Confirmation */}
+        {/* Confirmation */}
         {step === 4 && (
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold mb-8">Confirm Your Booking</h2>

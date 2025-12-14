@@ -17,7 +17,7 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  // ✅ SAFE display name (no logic change)
+
   const displayName = profile?.firstName || "User";
 
   return (

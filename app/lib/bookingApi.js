@@ -49,7 +49,7 @@ const DEMO_BARBERS = [
 
 // ========== API FUNCTIONS ==========
 
-// 1. GET BARBERS - No warning flags
+// GET BARBERS - No warning flags
 export const getBarbers = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, "barbers"));
@@ -83,7 +83,7 @@ export const getBarbers = async () => {
   }
 };
 
-// 2. GET AVAILABLE SLOTS
+// GET AVAILABLE SLOTS
 export const getAvailableSlots = async (barberId, date) => {
   const generateSlots = () => {
     const slots = [];
@@ -101,7 +101,7 @@ export const getAvailableSlots = async (barberId, date) => {
   };
 };
 
-// 3. CREATE BOOKING
+// CREATE BOOKING
 export const createBooking = async (bookingData) => {
   try {
     const bookingWithIds = {
@@ -124,7 +124,7 @@ export const createBooking = async (bookingData) => {
     return { 
       success: true, 
       data: { id: docRef.id, ...bookingWithIds },
-      message: "✅ Booking confirmed!"
+      message: " Booking confirmed!"
     };
   } catch (error) {
     console.log("💾 Saving booking locally");
@@ -143,12 +143,12 @@ export const createBooking = async (bookingData) => {
     return { 
       success: true, 
       data: localBooking,
-      message: "✅ Booking saved!"
+      message: " Booking saved!"
     };
   }
 };
 
-// 4. GET USER BOOKINGS - Fixed query
+// GET USER BOOKINGS - Fixed query
 export const getUserBookings = async (userId) => {
   try {
     const bookingsQuery = query(
@@ -189,7 +189,7 @@ export const getUserBookings = async (userId) => {
   }
 };
 
-// 5. CANCEL BOOKING
+// CANCEL BOOKING
 export const cancelBooking = async (bookingId) => {
   try {
     await updateDoc(doc(db, "bookings", bookingId), {

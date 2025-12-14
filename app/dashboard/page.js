@@ -21,14 +21,14 @@ export default function DashboardPage() {
     setLoading(true);
     const result = await getUserBookings(user.uid);
     if (result.success) {
-      // ✅ Remove duplicate bookings by ID
+      // Remove duplicate bookings by ID
       const uniqueBookings = removeDuplicateBookings(result.data);
       setBookings(uniqueBookings);
     }
     setLoading(false);
   };
 
-  // ✅ Function to remove duplicate bookings
+  // Function to remove duplicate bookings
   const removeDuplicateBookings = (bookingsArray) => {
     const seen = new Set();
     return bookingsArray.filter(booking => {
@@ -47,7 +47,7 @@ export default function DashboardPage() {
       const result = await cancelBooking(bookingId);
       if (result.success) {
         alert("Booking cancelled successfully");
-        fetchBookings(); // Refresh the list
+        fetchBookings(); 
       } else {
         alert("Failed to cancel booking");
       }
@@ -74,7 +74,7 @@ export default function DashboardPage() {
     new Date(booking.date || Date.now()) < new Date()
   );
 
-  // ✅ Function to generate unique keys
+  // Function to generate unique keys
   const getUniqueKey = (booking, index) => {
     // Use composite key for uniqueness
     return `${booking.id || 'no-id'}-${booking.date || 'no-date'}-${booking.time || 'no-time'}-${index}`;
@@ -180,7 +180,7 @@ export default function DashboardPage() {
                 <div className="space-y-6">
                   {upcomingBookings.map((booking, index) => (
                     <div 
-                      key={getUniqueKey(booking, index)} // ✅ Use unique key
+                      key={getUniqueKey(booking, index)} // Use unique key
                       className="border border-gray-700 rounded-lg p-6"
                     >
                       <div className="flex flex-col md:flex-row md:items-center justify-between">
@@ -232,7 +232,7 @@ export default function DashboardPage() {
                 <div className="space-y-6">
                   {pastBookings.map((booking, index) => (
                     <div 
-                      key={getUniqueKey(booking, index)} // ✅ Use unique key
+                      key={getUniqueKey(booking, index)} //  Use unique key
                       className="border border-gray-700 rounded-lg p-6"
                     >
                       <div className="flex flex-col md:flex-row md:items-center justify-between">
