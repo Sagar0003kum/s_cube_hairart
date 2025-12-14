@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "./context/CartContext";
+import Link from "next/link"; // Add this import
 
 export default function Home() {
   const { addToCart } = useCart();
@@ -143,6 +144,22 @@ export default function Home() {
           <p className="text-gray-400">
             Phone: <span className="text-white">+1 (403) 123-4567</span>
           </p>
+        </div>
+      </section>
+
+      {/* Booking CTA Section - Add this at the end */}
+      <section className="py-20 px-6 border-t border-gray-800">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-semibold mb-6">Ready for Your Next Haircut?</h2>
+          <p className="text-gray-400 mb-8">
+            Book an appointment with our expert barbers and get the perfect look you deserve.
+          </p>
+          <Link
+            href="/book"
+            className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg font-bold text-lg"
+          >
+            Book Appointment Now
+          </Link>
         </div>
       </section>
     </main>

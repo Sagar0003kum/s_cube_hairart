@@ -23,6 +23,7 @@ export default function Navbar() {
         <h1 className="text-lg font-bold">S_cube_HairArt</h1>
 
         <div className="flex items-center space-x-6">
+          <Link href="/dashboard" className="block px-4 py-2 hover:bg-gray-800" onClick={() => setOpen(false)}>Dashboard</Link>
           <Link href="/" className="hover:underline">Home</Link>
           <Link href="/services" className="hover:underline">Services</Link>
           <Link href="/styles" className="hover:underline">Styles</Link>
