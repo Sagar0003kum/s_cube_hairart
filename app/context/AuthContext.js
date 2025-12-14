@@ -5,27 +5,21 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
-
-  // ✅ NEW: tells Navbar if profile has finished loading (true/false)
-  const [profileLoaded, setProfileLoaded] = useState(false);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      // start loading states on every auth change
-      setLoading(true);
-      setProfileLoaded(false);
+      setLoading(true); // ✅ important
 
       if (!currentUser) {
+        // clear everything on logout
         setUser(null);
         setProfile(null);
-        setProfileLoaded(true); // ✅ done (no user)
         setLoading(false);
         return;
       }
@@ -43,7 +37,6 @@ export function AuthProvider({ children }) {
         setProfile(null);
       }
 
-      setProfileLoaded(true); // ✅ done fetching profile
       setLoading(false);
     });
 
@@ -51,7 +44,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, profile, profileLoaded }}>
+    <AuthContext.Provider value={{ user, profile, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );

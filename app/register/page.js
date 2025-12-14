@@ -1,10 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
@@ -41,7 +38,6 @@ export default function RegisterPage() {
         password
       );
 
-      // Save user profile to Firestore
       await setDoc(doc(db, "users", userCredential.user.uid), {
         firstName,
         lastName,
@@ -49,11 +45,9 @@ export default function RegisterPage() {
         createdAt: serverTimestamp(),
       });
 
-      // 🔥 CRITICAL FIX: force logout after signup
-      await signOut(auth);
+      // ✅ HARD REDIRECT — avoids auth race conditions
+      window.location.href = "/login";
 
-      // Redirect to login (replace prevents back navigation)
-      router.replace("/login");
     } catch (err) {
       setError(err.message);
     }

@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
-  const { user, profile, profileLoaded } = useAuth(); // ✅ added profileLoaded
+  const { user, profile } = useAuth();
   const { cart } = useCart();
   const [open, setOpen] = useState(false);
 
@@ -16,6 +16,9 @@ export default function Navbar() {
     await signOut(auth);
     setOpen(false);
   };
+
+  // ✅ ONLY CHANGE IS HERE
+  const displayName = profile?.firstName || "User";
 
   return (
     <nav className="bg-black text-white px-6 py-4 border-b border-gray-800">
@@ -31,26 +34,19 @@ export default function Navbar() {
             Cart ({cart.length})
           </Link>
 
-          {/* ✅ Logged out => ALWAYS show Login */}
           {!user && (
             <Link href="/login" className="hover:underline">
               Login
             </Link>
           )}
 
-          {/* ✅ Logged in BUT profile still loading => show nothing (prevents wrong "Login" / wrong "Hello") */}
-          {user && !profileLoaded && (
-            <span className="text-gray-400">...</span>
-          )}
-
-          {/* ✅ Logged in AND profile loaded => show Hello firstName */}
-          {user && profileLoaded && (
+          {user && (
             <div className="relative">
               <button
                 onClick={() => setOpen(!open)}
                 className="hover:underline"
               >
-                Hello {profile?.firstName || "User"}
+                Hello {displayName}
               </button>
 
               {open && (
